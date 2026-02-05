@@ -731,7 +731,7 @@
                     </div>
                 </div>
 
-                <button type="submit" class="submit-btn">Submit Survey </button>
+                <button type="submit" class="submit-btn">Submit Survey</button>
             </form>
         </div>
     </div>
@@ -766,62 +766,52 @@
                     <textarea id="subtitle" placeholder="You make every moment magical!">You make every moment magical! ✨</textarea>
                 </div>
 
-                <!-- Image Uploads -->
-                <div class="control-item">
-                    <h3>📸 Photo 1</h3>
-                    <input type="file" id="image1" accept="image/*" onchange="updateImage(1)">
-                </div>
-
-                <div class="control-item">
-                    <h3>💬 Message 1</h3>
-                    <textarea id="message1" placeholder="Your message here...">Every moment with you is a treasure I hold close to my heart. 💖</textarea>
-                </div>
-
-                <div class="control-item">
-                    <h3>📸 Photo 2</h3>
-                    <input type="file" id="image2" accept="image/*" onchange="updateImage(2)">
-                </div>
-
-                <div class="control-item">
-                    <h3>💬 Message 2</h3>
-                    <textarea id="message2" placeholder="Your message here...">You light up my world in ways I never knew were possible. ✨</textarea>
-                </div>
-
-                <div class="control-item">
-                    <h3>📸 Photo 3</h3>
-                    <input type="file" id="image3" accept="image/*" onchange="updateImage(3)">
-                </div>
-
-                <div class="control-item">
-                    <h3>💬 Message 3</h3>
-                    <textarea id="message3" placeholder="Your message here...">With you, every day feels like Valentine's Day. 🌹</textarea>
-                </div>
-
-                <div class="control-item">
-                    <h3>📸 Photo 4</h3>
-                    <input type="file" id="image4" accept="image/*" onchange="updateImage(4)">
-                </div>
-
-                <div class="control-item">
-                    <h3>💬 Message 4</h3>
-                    <textarea id="message4" placeholder="Your message here...">Thank you for being my partner, my best friend, and my everything. 💑</textarea>
-                </div>
-
-                <div class="control-item">
-                    <h3>📸 Photo 5</h3>
-                    <input type="file" id="image5" accept="image/*" onchange="updateImage(5)">
-                </div>
-
-                <div class="control-item">
-                    <h3>💬 Message 5</h3>
-                    <textarea id="message5" placeholder="Your message here...">I love you more than words can express. Forever and always. 💕</textarea>
-                </div>
-
-                <!-- Final Section -->
-                <div class="control-item">
-                    <h3>💝 Final Title</h3>
-                    <textarea id="finalTitle" placeholder="Forever Yours">Forever Yours</textarea>
-                </div>
+              <!-- Image Uploads -->
+<div class="control-item">
+    <h3>📸 Photo 1</h3>
+    <img src="picture1.jpg" alt="Photo 1" id="image1">
+</div>
+<div class="control-item">
+    <h3>💬 Message 1</h3>
+    <p id="message1">Every moment with you is a treasure I hold close to my heart. 💖</p>
+</div>
+<div class="control-item">
+    <h3>📸 Photo 2</h3>
+    <img src="picture2.jpg" alt="Photo 2" id="image2">
+</div>
+<div class="control-item">
+    <h3>💬 Message 2</h3>
+    <p id="message2">You light up my world in ways I never knew were possible. ✨</p>
+</div>
+<div class="control-item">
+    <h3>📸 Photo 3</h3>
+    <img src="picture3.jpg" alt="Photo 3" id="image3">
+</div>
+<div class="control-item">
+    <h3>💬 Message 3</h3>
+    <p id="message3">With you, every day feels like Valentine's Day. 🌹</p>
+</div>
+<div class="control-item">
+    <h3>📸 Photo 4</h3>
+    <img src="picture4.jpg" alt="Photo 4" id="image4">
+</div>
+<div class="control-item">
+    <h3>💬 Message 4</h3>
+    <p id="message4">Thank you for being my partner, my best friend, and my everything. 💑</p>
+</div>
+<div class="control-item">
+    <h3>📸 Photo 5</h3>
+    <img src="picture5.jpg" alt="Photo 5" id="image5">
+</div>
+<div class="control-item">
+    <h3>💬 Message 5</h3>
+    <p id="message5">I love you more than words can express. Forever and always. 💕</p>
+</div>
+<!-- Final Section -->
+<div class="control-item">
+    <h3>💝 Final Title</h3>
+    <p id="finalTitle">Forever Yours</p>
+</div>
 
                 <div class="control-item">
                     <h3>💌 Final Message</h3>
@@ -1121,3 +1111,4 @@ You mean the world to me! 💕</textarea>
     </script>
 </body>
 </html>
+
