@@ -16,6 +16,11 @@
             background: linear-gradient(135deg, #008B8B 0%, #20B2AA 50%, #48D1CC 100%);
             min-height: 100vh;
             overflow-x: hidden;
+            transition: background 1s ease;
+        }
+
+        body.pink-theme {
+            background: linear-gradient(135deg, #ffc0cb 0%, #ffb3d9 50%, #ff69b4 100%);
         }
 
         /* ==================== SURVEY PAGE STYLES ==================== */
@@ -616,7 +621,7 @@
             <div class="section" style="animation-delay: 0.1s">
                 <div class="section-number">1</div>
                 <div class="section-image-container">
-                    <img class="section-image" src="picture1.jpg" alt="Memory 1">
+                    <img class="section-image" src="picture/picture1.jpg" alt="Memory 1">
                 </div>
                 <div class="section-message">
                     Every moment with you is a treasure I hold close to my heart. 💖
@@ -627,7 +632,7 @@
             <div class="section" style="animation-delay: 0.2s">
                 <div class="section-number">2</div>
                 <div class="section-image-container">
-                    <img class="section-image" src="picture2.jpg" alt="Memory 2">
+                    <img class="section-image" src="picture/picture2.jpg" alt="Memory 2">
                 </div>
                 <div class="section-message">
                     You light up my world in ways I never knew were possible. ✨
@@ -638,7 +643,7 @@
             <div class="section" style="animation-delay: 0.3s">
                 <div class="section-number">3</div>
                 <div class="section-image-container">
-                    <img class="section-image" src="picture3.jpg" alt="Memory 3">
+                    <img class="section-image" src="picture/picture3.jpg" alt="Memory 3">
                 </div>
                 <div class="section-message">
                     With you, every day feels like Valentine's Day. 🌹
@@ -649,7 +654,7 @@
             <div class="section" style="animation-delay: 0.4s">
                 <div class="section-number">4</div>
                 <div class="section-image-container">
-                    <img class="section-image" src="picture4.jpg" alt="Memory 4">
+                    <img class="section-image" src="picture/picture4.jpg" alt="Memory 4">
                 </div>
                 <div class="section-message">
                     Thank you for being my partner, my best friend, and my everything. 💑
@@ -660,7 +665,7 @@
             <div class="section" style="animation-delay: 0.5s">
                 <div class="section-number">5</div>
                 <div class="section-image-container">
-                    <img class="section-image" src="picture5.jpg" alt="Memory 5">
+                    <img class="section-image" src="picture/picture5.jpg" alt="Memory 5">
                 </div>
                 <div class="section-message">
                     I love you more than words can express. Forever and always. 💕
@@ -685,6 +690,9 @@
             
             const surveyContainer = document.getElementById('surveyContainer');
             const valentinesContainer = document.getElementById('valentinesContainer');
+            
+            // Change body background to pink
+            document.body.classList.add('pink-theme');
             
             // Hide survey with animation
             surveyContainer.classList.add('hidden');
@@ -743,3 +751,21 @@
     </script>
 </body>
 </html>
+```
+
+**Key Changes Made:**
+
+1. ✅ **Pink Background After Survey**: Added `body.pink-theme` class that changes background to pink gradient when survey is submitted
+2. ✅ **Smooth Transition**: Added `transition: background 1s ease;` for smooth color change
+3. ✅ **Updated Image Paths**: Changed all image sources to `picture/picture1.jpg` through `picture/picture5.jpg`
+
+**Your folder structure should be:**
+```
+your-repo/
+├── index.html
+└── picture/
+    ├── picture1.jpg
+    ├── picture2.jpg
+    ├── picture3.jpg
+    ├── picture4.jpg
+    └── picture5.jpg
