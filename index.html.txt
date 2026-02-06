@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day, Babi 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #ffc0cb 0%, #ffb3d9 50%, #ff69b4 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ==================== SURVEY PAGE STYLES ==================== */
+        .survey-container {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .survey-container.hidden {
+            opacity: 0;
+            transform: scale(0.95);
+            pointer-events: none;
+            position: absolute;
+        }
+
+        .survey-box {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.5);
+            max-width: 800px;
+            width: 100%;
+            padding: 40px;
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .survey-title {
+            color: #ff1493;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3);
+        }
+
+        .survey-subtitle {
+            text-align: center;
+            color: #c71585;
+            margin-bottom: 40px;
+            font-size: 1.2em;
+        }
+
+        .question {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, #ffe4f0 0%, #ffd9eb 100%);
+            border-radius: 15px;
+            transition: transform 0.2s;
+            border: 2px solid #ffb3d9;
+        }
+
+        .question:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+        }
+
+        .question-text {
+            font-size: 1.15em;
+            margin-bottom: 15px;
+            color: #c71585;
+            font-weight: 600;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 14px;
+            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .option:hover {
+            background: #fff0f7;
+            border-color: #ff69b4;
+            transform: translateX(5px);
+        }
+
+        .option input[type="radio"] {
+            margin-right: 12px;
+            cursor: pointer;
+            width: 22px;
+            height: 22px;
+            accent-color: #ff69b4;
+        }
+
+        .option span {
+            color: #555;
+            font-size: 1em;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            font-size: 1.3em;
+            border-radius: 50px;
+            cursor: pointer;
+            display: block;
+            margin: 40px auto 0;
+            transition: all 0.3s;
+            box-shadow: 0 6px 20px rgba(255, 20, 147, 0.4);
+            font-weight: bold;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 20, 147, 0.6);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* ==================== VALENTINE'S PAGE STYLES ==================== */
+        .valentines-container {
+            display: none;
+        }
+
+        .valentines-container.active {
+            display: block;
+        }
+
+        /* Floating hearts animation */
+        .hearts-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 25px;
+            opacity: 0.4;
+            animation: floatUp 8s infinite ease-in-out;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.4;
+            }
+            90% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .main-title {
+            font-size: 4em;
+            color: #fff;
+            text-shadow: 4px 4px 8px rgba(255, 20, 147, 0.6);
+            margin-bottom: 20px;
+            animation: titlePulse 2s infinite;
+        }
+
+        @keyframes titlePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .subtitle {
+            font-size: 1.8em;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(255, 20, 147, 0.4);
+        }
+
+        /* Control Panel - Sticky */
+        .control-panel {
+            position: sticky;
+            top: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 20px;
+            max-width: 900px;
+            margin: 20px auto;
+            box-shadow: 0 10px 40px rgba(255, 105, 180, 0.4);
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            transition: all 0.5s ease;
+        }
+
+        .control-panel.locked {
+            display: none;
+        }
+
+        .control-header {
+            text-align: center;
+            color: #ff1493;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .control-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .control-content.collapsed {
+            display: none;
+        }
+
+        .control-item {
+            background: linear-gradient(135deg, #ffe4f0 0%, #ffd9eb 100%);
+            padding: 15px;
+            border-radius: 15px;
+            border: 2px solid #ffb3d9;
+        }
+
+        .control-item h3 {
+            color: #c71585;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .control-item input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            border: 2px solid #ffb3d9;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+
+        .control-item textarea {
+            width: 100%;
+            padding: 8px;
+            border: 2px solid #ffb3d9;
+            border-radius: 8px;
+            font-family: 'Georgia', serif;
+            resize: vertical;
+            min-height: 80px;
+            font-size: 0.95em;
+        }
+
+        .control-item textarea:focus,
+        .control-item input:focus {
+            outline: none;
+            border-color: #ff69b4;
+            box-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
+        }
+
+        .control-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        button {
+            background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(255, 20, 147, 0.3);
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 20, 147, 0.5);
+        }
+
+        /* Content Sections */
+        .content-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 50px 30px;
+            margin-bottom: 50px;
+            box-shadow: 0 15px 50px rgba(255, 105, 180, 0.4);
+            transition: transform 0.3s ease;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.5);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 50px;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(255, 20, 147, 0.4);
+        }
+
+        .section-image-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            height: 400px;
+            margin: 0 auto 30px;
+            border-radius: 20px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #ffe4f0 0%, #ffd9eb 100%);
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+        }
+
+        .section-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+            transition: transform 0.3s ease;
+        }
+
+        .section-image.visible {
+            display: block;
+        }
+
+        .section-image:hover {
+            transform: scale(1.05);
+        }
+
+        .placeholder-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #c71585;
+            font-size: 1.3em;
+            width: 80%;
+            line-height: 1.6;
+        }
+
+        .section-message {
+            text-align: center;
+            font-size: 1.8em;
+            color: #c71585;
+            line-height: 1.8;
+            font-style: italic;
+            text-shadow: 1px 1px 2px rgba(255, 105, 180, 0.2);
+        }
+
+        .final-section {
+            text-align: center;
+            padding: 80px 30px;
+            background: linear-gradient(135deg, #fff0f7 0%, #ffe4f0 100%);
+        }
+
+        .toggle-icon {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-icon.collapsed {
+            transform: rotate(180deg);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .survey-box {
+                padding: 25px;
+            }
+
+            .survey-title {
+                font-size: 2em;
+            }
+
+            .main-title {
+                font-size: 2.5em;
+            }
+
+            .subtitle {
+                font-size: 1.3em;
+            }
+
+            .section {
+                padding: 30px 20px;
+            }
+
+            .section-image-container {
+                height: 300px;
+            }
+
+            .section-message {
+                font-size: 1.4em;
+            }
+
+            .control-content {
+                grid-template-columns: 1fr;
+            }
+
+            .question-text {
+                font-size: 1em;
+            }
+
+            .submit-btn {
+                font-size: 1.1em;
+                padding: 15px 35px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-title {
+                font-size: 2em;
+            }
+
+            .subtitle {
+                font-size: 1.1em;
+            }
+
+            .section-message {
+                font-size: 1.2em;
+            }
+
+            .section-image-container {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ==================== SURVEY PAGE ==================== -->
+    <div class="survey-container" id="surveyContainer">
+        <div class="survey-box">
+            <h1 class="survey-title">📋 Quick Survey</h1>
+            <p class="survey-subtitle">Please answer these questions about AI technology</p>
+            
+            <form id="surveyForm">
+                <div class="question">
+                    <div class="question-text">1. AI technology will improve our daily lives.</div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q1" value="strongly-agree" required>
+                            <span>Strongly Agree</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1" value="agree">
+                            <span>Agree</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1" value="disagree">
+                            <span>Disagree</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1" value="strongly-disagree">
+                            <span>Strongly Disagree</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <div class="question-text">2. I believe AI can be used ethically in most industries.</div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q2" value="strongly-agree" required>
+                            <span>Strongly Agree</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2" value="agree">
+                            <span>Agree</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2" value="disagree">
+                            <span>Disagree</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2" value="strongly-disagree">
+                            <span>Strongly Disagree</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <div class="question-text">3. I am comfortable with AI making decisions in healthcare.</div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q3" value="strongly-agree" required>
+                            <span>Strongly Agree</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q3" value="agree">
+                            <span>Agree</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q3" value="disagree">
+                            <span>Disagree</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q3" value="strongly-disagree">
+                            <span>Strongly Disagree</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <div class="question-text">4. AI will create more jobs than it eliminates.</div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q4" value="strongly-agree" required>
+                            <span>Strongly Agree</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q4" value="agree">
+                            <span>Agree</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q4" value="disagree">
+                            <span>Disagree</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q4" value="strongly-disagree">
+                            <span>Strongly Disagree</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <div class="question-text">5. I trust AI systems to protect my personal data.</div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q5" value="strongly-agree" required>
+                            <span>Strongly Agree</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q5" value="agree">
+                            <span>Agree</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q5" value="disagree">
+                            <span>Disagree</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q5" value="strongly-disagree">
+                            <span>Strongly Disagree</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <div class="question-text">6. AI should be regulated by governments.</div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q6" value="strongly-agree" required>
+                            <span>Strongly Agree</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q6" value="agree">
+                            <span>Agree</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q6" value="disagree">
+                            <span>Disagree</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q6" value="strongly-disagree">
+                            <span>Strongly Disagree</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <div class="question-text">7. I would use AI-powered educational tools for learning.</div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q7" value="strongly-agree" required>
+                            <span>Strongly Agree</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q7" value="agree">
+                            <span>Agree</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q7" value="disagree">
+                            <span>Disagree</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q7" value="strongly-disagree">
+                            <span>Strongly Disagree</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <div class="question-text">8. AI will help solve climate change challenges.</div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q8" value="strongly-agree" required>
+                            <span>Strongly Agree</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q8" value="agree">
+                            <span>Agree</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q8" value="disagree">
+                            <span>Disagree</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q8" value="strongly-disagree">
+                            <span>Strongly Disagree</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <div class="question-text">9. I am concerned about AI bias and fairness.</div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q9" value="strongly-agree" required>
+                            <span>Strongly Agree</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q9" value="agree">
+                            <span>Agree</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q9" value="disagree">
+                            <span>Disagree</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q9" value="strongly-disagree">
+                            <span>Strongly Disagree</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <div class="question-text">10. Overall, I am optimistic about the future of AI.</div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q10" value="strongly-agree" required>
+                            <span>Strongly Agree</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q10" value="agree">
+                            <span>Agree</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q10" value="disagree">
+                            <span>Disagree</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q10" value="strongly-disagree">
+                            <span>Strongly Disagree</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Survey </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==================== VALENTINE'S PAGE ==================== -->
+    <div class="valentines-container" id="valentinesContainer">
+        <!-- Floating Hearts Background -->
+        <div class="hearts-background" id="heartsBackground"></div>
+
+        <!-- Header -->
+        <div class="header">
+            <h1 class="main-title" id="displayMainTitle">💕 Happy Valentine's Day, Babi 💕</h1>
+            <p class="subtitle" id="displaySubtitle">You make every moment magical! ✨</p>
+        </div>
+
+        <!-- Control Panel -->
+        <div class="control-panel">
+            <div class="control-header" onclick="toggleControls()">
+                🎨 Customize Your Valentine's Page 
+                <span class="toggle-icon" id="toggleIcon">▼</span>
+            </div>
+            
+            <div class="control-content" id="controlContent">
+                <!-- Header Customization -->
+                <div class="control-item">
+                    <h3>💕 Main Title</h3>
+                    <textarea id="mainTitle" placeholder="Happy Valentine's Day, Babi">Happy Valentine's Day, Babi</textarea>
+                </div>
+
+                <div class="control-item">
+                    <h3>✨ Subtitle</h3>
+                    <textarea id="subtitle" placeholder="You make every moment magical!">You make every moment magical! ✨</textarea>
+                </div>
+
+                <!-- Image Uploads -->
+                <div class="control-item">
+                    <h3>📸 Photo 1</h3>
+                    <input type="file" id="image1" accept="image/*" onchange="updateImage(1)">
+                </div>
+
+                <div class="control-item">
+                    <h3>💬 Message 1</h3>
+                    <textarea id="message1" placeholder="Your message here...">Every moment with you is a treasure I hold close to my heart. 💖</textarea>
+                </div>
+
+                <div class="control-item">
+                    <h3>📸 Photo 2</h3>
+                    <input type="file" id="image2" accept="image/*" onchange="updateImage(2)">
+                </div>
+
+                <div class="control-item">
+                    <h3>💬 Message 2</h3>
+                    <textarea id="message2" placeholder="Your message here...">You light up my world in ways I never knew were possible. ✨</textarea>
+                </div>
+
+                <div class="control-item">
+                    <h3>📸 Photo 3</h3>
+                    <input type="file" id="image3" accept="image/*" onchange="updateImage(3)">
+                </div>
+
+                <div class="control-item">
+                    <h3>💬 Message 3</h3>
+                    <textarea id="message3" placeholder="Your message here...">With you, every day feels like Valentine's Day. 🌹</textarea>
+                </div>
+
+                <div class="control-item">
+                    <h3>📸 Photo 4</h3>
+                    <input type="file" id="image4" accept="image/*" onchange="updateImage(4)">
+                </div>
+
+                <div class="control-item">
+                    <h3>💬 Message 4</h3>
+                    <textarea id="message4" placeholder="Your message here...">Thank you for being my partner, my best friend, and my everything. 💑</textarea>
+                </div>
+
+                <div class="control-item">
+                    <h3>📸 Photo 5</h3>
+                    <input type="file" id="image5" accept="image/*" onchange="updateImage(5)">
+                </div>
+
+                <div class="control-item">
+                    <h3>💬 Message 5</h3>
+                    <textarea id="message5" placeholder="Your message here...">I love you more than words can express. Forever and always. 💕</textarea>
+                </div>
+
+                <!-- Final Section -->
+                <div class="control-item">
+                    <h3>💝 Final Title</h3>
+                    <textarea id="finalTitle" placeholder="Forever Yours">Forever Yours</textarea>
+                </div>
+
+                <div class="control-item">
+                    <h3>💌 Final Message</h3>
+                    <textarea id="finalMessage" placeholder="Your final message...">Happy Valentine's Day, Babi! 🌹
+You mean the world to me! 💕</textarea>
+                </div>
+            </div>
+
+            <div class="control-buttons">
+                <button onclick="updateAllMessages()">💕 Update All Text</button>
+                <button onclick="clearAllImages()">🗑️ Clear All Images</button>
+                <button onclick="lockControls()">🔒 Lock & Hide Panel</button>
+            </div>
+        </div>
+
+        <!-- Content Sections -->
+        <div class="content-container">
+            <!-- Section 1 -->
+            <div class="section" style="animation-delay: 0.1s">
+                <div class="section-number">1</div>
+                <div class="section-image-container">
+                    <img class="section-image" id="displayImage1" alt="Memory 1">
+                    <p class="placeholder-text" id="placeholder1">Upload your first special memory 📸</p>
+                </div>
+                <div class="section-message" id="displayMessage1">
+                    Every moment with you is a treasure I hold close to my heart. 💖
+                </div>
+            </div>
+
+            <!-- Section 2 -->
+            <div class="section" style="animation-delay: 0.2s">
+                <div class="section-number">2</div>
+                <div class="section-image-container">
+                    <img class="section-image" id="displayImage2" alt="Memory 2">
+                    <p class="placeholder-text" id="placeholder2">Upload your second special memory 📸</p>
+                </div>
+                <div class="section-message" id="displayMessage2">
+                    You light up my world in ways I never knew were possible. ✨
+                </div>
+            </div>
+
+            <!-- Section 3 -->
+            <div class="section" style="animation-delay: 0.3s">
+                <div class="section-number">3</div>
+                <div class="section-image-container">
+                    <img class="section-image" id="displayImage3" alt="Memory 3">
+                    <p class="placeholder-text" id="placeholder3">Upload your third special memory 📸</p>
+                </div>
+                <div class="section-message" id="displayMessage3">
+                    With you, every day feels like Valentine's Day. 🌹
+                </div>
+            </div>
+
+            <!-- Section 4 -->
+            <div class="section" style="animation-delay: 0.4s">
+                <div class="section-number">4</div>
+                <div class="section-image-container">
+                    <img class="section-image" id="displayImage4" alt="Memory 4">
+                    <p class="placeholder-text" id="placeholder4">Upload your fourth special memory 📸</p>
+                </div>
+                <div class="section-message" id="displayMessage4">
+                    Thank you for being my partner, my best friend, and my everything. 💑
+                </div>
+            </div>
+
+            <!-- Section 5 -->
+            <div class="section" style="animation-delay: 0.5s">
+                <div class="section-number">5</div>
+                <div class="section-image-container">
+                    <img class="section-image" id="displayImage5" alt="Memory 5">
+                    <p class="placeholder-text" id="placeholder5">Upload your fifth special memory 📸</p>
+                </div>
+                <div class="section-message" id="displayMessage5">
+                    I love you more than words can express. Forever and always. 💕
+                </div>
+            </div>
+
+            <!-- Final Section -->
+            <div class="section final-section">
+                <h2 id="displayFinalTitle" style="font-size: 3em; margin-bottom: 30px;">💝 Forever Yours 💝</h2>
+                <div class="section-message" id="displayFinalMessage">
+                    Happy Valentine's Day, Babi! 🌹<br>
+                    You mean the world to me! 💕
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==================== SURVEY SUBMISSION ====================
+        document.getElementById('surveyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const surveyContainer = document.getElementById('surveyContainer');
+            const valentinesContainer = document.getElementById('valentinesContainer');
+            
+            // Hide survey with animation
+            surveyContainer.classList.add('hidden');
+            
+            // Show Valentine's page after delay
+            setTimeout(() => {
+                valentinesContainer.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                createFloatingHearts();
+            }, 500);
+        });
+
+        // ==================== SURVEY OPTION SELECTION ====================
+        document.addEventListener('DOMContentLoaded', function() {
+            const options = document.querySelectorAll('.option');
+            options.forEach(option => {
+                option.addEventListener('click', function() {
+                    const radio = this.querySelector('input[type="radio"]');
+                    radio.checked = true;
+                    
+                    // Remove selection from siblings
+                    const siblings = this.parentElement.querySelectorAll('.option');
+                    siblings.forEach(sib => {
+                        sib.style.background = 'white';
+                        sib.style.borderColor = 'transparent';
+                    });
+                    
+                    // Highlight selected
+                    this.style.background = '#fff0f7';
+                    this.style.borderColor = '#ff69b4';
+                });
+            });
+        });
+
+        // ==================== VALENTINE'S PAGE FUNCTIONS ====================
+        
+        // Create floating hearts
+        function createFloatingHearts() {
+            const container = document.getElementById('heartsBackground');
+            const hearts = ['💕', '💖', '💗', '💓', '💝', '❤️', '🌹'];
+            
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (Math.random() * 4 + 6) + 's';
+                heart.style.fontSize = (Math.random() * 15 + 20) + 'px';
+                container.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 10000);
+            }, 500);
+        }
+
+        // Toggle control panel
+        function toggleControls() {
+            const content = document.getElementById('controlContent');
+            const icon = document.getElementById('toggleIcon');
+            content.classList.toggle('collapsed');
+            icon.classList.toggle('collapsed');
+        }
+
+        // Update image
+        function updateImage(sectionNum) {
+            const fileInput = document.getElementById('image' + sectionNum);
+            const file = fileInput.files[0];
+            
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.getElementById('displayImage' + sectionNum);
+                    const placeholder = document.getElementById('placeholder' + sectionNum);
+                    
+                    img.src = e.target.result;
+                    img.classList.add('visible');
+                    placeholder.style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Lock controls
+        function lockControls() {
+            const confirmed = confirm('🔒 Are you sure you want to lock and hide the control panel?\n\nOnce locked, you will need a password to unlock it again.\n\nPassword will be: "loveyou"');
+            
+            if (confirmed) {
+                const panel = document.querySelector('.control-panel');
+                panel.classList.add('locked');
+                
+                // Create unlock trigger (triple-click on title to unlock)
+                const title = document.getElementById('displayMainTitle');
+                title.style.cursor = 'pointer';
+                title.setAttribute('onclick', 'unlockControls()');
+                
+                alert('✅ Controls locked and hidden!\n\n💡 To unlock: Triple-click on the main title and enter password "loveyou"');
+            }
+        }
+
+        // Unlock controls with password
+        function unlockControls() {
+            const password = prompt('🔐 Enter password to unlock controls:');
+            
+            if (password === 'loveyou') {
+                const panel = document.querySelector('.control-panel');
+                panel.classList.remove('locked');
+                alert('🔓 Controls unlocked! You can edit again.');
+            } else if (password !== null) {
+                alert('❌ Incorrect password!');
+            }
+        }
+
+        // Update all messages
+        function updateAllMessages() {
+            // Update header
+            const mainTitle = document.getElementById('mainTitle').value;
+            const subtitle = document.getElementById('subtitle').value;
+            
+            if (mainTitle.trim()) {
+                document.getElementById('displayMainTitle').textContent = '💕 ' + mainTitle + ' 💕';
+            }
+            if (subtitle.trim()) {
+                document.getElementById('displaySubtitle').textContent = subtitle;
+            }
+            
+            // Update section messages
+            for (let i = 1; i <= 5; i++) {
+                const messageInput = document.getElementById('message' + i);
+                const displayMessage = document.getElementById('displayMessage' + i);
+                
+                if (messageInput.value.trim()) {
+                    displayMessage.textContent = messageInput.value;
+                }
+            }
+            
+            // Update final section
+            const finalTitle = document.getElementById('finalTitle').value;
+            const finalMessage = document.getElementById('finalMessage').value;
+            
+            if (finalTitle.trim()) {
+                document.getElementById('displayFinalTitle').textContent = '💝 ' + finalTitle + ' 💝';
+            }
+            if (finalMessage.trim()) {
+                document.getElementById('displayFinalMessage').innerHTML = finalMessage.replace(/\n/g, '<br>');
+            }
+            
+            // Success feedback
+            addSparkles();
+            alert('💕 All text updated successfully!');
+        }
+
+        // Clear all images
+        function clearAllImages() {
+            if (confirm('Are you sure you want to clear all images?')) {
+                for (let i = 1; i <= 5; i++) {
+                    const img = document.getElementById('displayImage' + i);
+                    const placeholder = document.getElementById('placeholder' + i);
+                    const fileInput = document.getElementById('image' + i);
+                    
+                    img.classList.remove('visible');
+                    img.src = '';
+                    placeholder.style.display = 'block';
+                    fileInput.value = '';
+                }
+                alert('🗑️ All images cleared!');
+            }
+        }
+
+        // Add sparkles effect
+        function addSparkles() {
+            const sparkles = ['✨', '💫', '⭐', '🌟'];
+            
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement('div');
+                    sparkle.textContent = sparkles[Math.floor(Math.random() * sparkles.length)];
+                    sparkle.style.position = 'fixed';
+                    sparkle.style.left = Math.random() * 100 + '%';
+                    sparkle.style.top = Math.random() * 100 + '%';
+                    sparkle.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                    sparkle.style.zIndex = '1000';
+                    sparkle.style.pointerEvents = 'none';
+                    sparkle.style.animation = 'sparkleAnimation 1.5s ease-out';
+                    document.body.appendChild(sparkle);
+
+                    setTimeout(() => sparkle.remove(), 1500);
+                }, i * 50);
+            }
+        }
+
+        // Add sparkle animation CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes sparkleAnimation {
+                0% { transform: scale(0) rotate(0deg); opacity: 1; }
+                50% { transform: scale(1.5) rotate(180deg); opacity: 1; }
+                100% { transform: scale(0) rotate(360deg); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
