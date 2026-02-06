@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #008B8B 0%, #20B2AA 50%, #48D1CC 100%);
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
             min-height: 100vh;
             overflow-x: hidden;
             transition: background 1s ease;
@@ -21,6 +21,109 @@
 
         body.pink-theme {
             background: linear-gradient(135deg, #ffc0cb 0%, #ffb3d9 50%, #ff69b4 100%);
+        }
+
+        /* ==================== CARNATION ANIMATION OVERLAY ==================== */
+        .carnation-animation-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #fff5f7 0%, #ffe4e9 50%, #ffd4e5 100%);
+            z-index: 9999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .carnation-animation-overlay.active {
+            display: flex;
+            animation: overlayFadeIn 0.5s ease;
+        }
+
+        @keyframes overlayFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .carnation-animation-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .carnation-decoration-circle {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border: 3px dashed #ff69b4;
+            border-radius: 50%;
+            animation: rotateCircle 20s linear infinite;
+        }
+
+        @keyframes rotateCircle {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .carnation-large {
+            position: absolute;
+            font-size: 100px;
+            animation: carnationBloomLarge 1.5s ease-in-out forwards;
+            transform-origin: center;
+            filter: drop-shadow(4px 4px 8px rgba(255, 105, 180, 0.5));
+        }
+
+        @keyframes carnationBloomLarge {
+            0% {
+                transform: scale(0) rotate(0deg);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.3) rotate(180deg);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1) rotate(360deg);
+                opacity: 1;
+            }
+        }
+
+        .carnation-large:nth-child(2) { top: 50%; left: 50%; transform: translate(-50%, -50%); animation-delay: 0s; }
+        .carnation-large:nth-child(3) { top: 15%; left: 50%; transform: translate(-50%, 0); animation-delay: 0.2s; }
+        .carnation-large:nth-child(4) { top: 50%; right: 15%; transform: translate(0, -50%); animation-delay: 0.4s; }
+        .carnation-large:nth-child(5) { bottom: 15%; left: 50%; transform: translate(-50%, 0); animation-delay: 0.6s; }
+        .carnation-large:nth-child(6) { top: 50%; left: 15%; transform: translate(0, -50%); animation-delay: 0.8s; }
+        .carnation-large:nth-child(7) { top: 25%; left: 25%; animation-delay: 1s; }
+        .carnation-large:nth-child(8) { top: 25%; right: 25%; animation-delay: 1.2s; }
+        .carnation-large:nth-child(9) { bottom: 25%; left: 25%; animation-delay: 1.4s; }
+        .carnation-large:nth-child(10) { bottom: 25%; right: 25%; animation-delay: 1.6s; }
+
+        .carnation-message {
+            margin-top: 80px;
+            font-size: 2.8em;
+            color: #ff1493;
+            text-align: center;
+            animation: messageAppear 1s ease 2s both;
+            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3);
+            font-weight: bold;
+        }
+
+        @keyframes messageAppear {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* ==================== SURVEY PAGE STYLES ==================== */
@@ -43,7 +146,7 @@
         .survey-box {
             background: rgba(255, 255, 255, 0.98);
             border-radius: 25px;
-            box-shadow: 0 20px 60px rgba(32, 178, 170, 0.5);
+            box-shadow: 0 20px 60px rgba(59, 130, 246, 0.5);
             max-width: 800px;
             width: 100%;
             padding: 40px;
@@ -56,16 +159,16 @@
         }
 
         .survey-title {
-            color: #008B8B;
+            color: #1e40af;
             text-align: center;
             margin-bottom: 30px;
             font-size: 2.5em;
-            text-shadow: 2px 2px 4px rgba(32, 178, 170, 0.3);
+            text-shadow: 2px 2px 4px rgba(59, 130, 246, 0.3);
         }
 
         .survey-subtitle {
             text-align: center;
-            color: #20B2AA;
+            color: #3b82f6;
             margin-bottom: 40px;
             font-size: 1.2em;
         }
@@ -73,21 +176,21 @@
         .question {
             margin-bottom: 30px;
             padding: 25px;
-            background: linear-gradient(135deg, #E0F2F1 0%, #B2DFDB 100%);
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
             border-radius: 15px;
             transition: transform 0.2s;
-            border: 2px solid #80CBC4;
+            border: 2px solid #93c5fd;
         }
 
         .question:hover {
             transform: translateX(5px);
-            box-shadow: 0 5px 15px rgba(32, 178, 170, 0.3);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
         }
 
         .question-text {
             font-size: 1.15em;
             margin-bottom: 15px;
-            color: #00695C;
+            color: #1e3a8a;
             font-weight: 600;
         }
 
@@ -109,8 +212,8 @@
         }
 
         .option:hover {
-            background: #E0F2F1;
-            border-color: #26A69A;
+            background: #dbeafe;
+            border-color: #3b82f6;
             transform: translateX(5px);
         }
 
@@ -119,7 +222,7 @@
             cursor: pointer;
             width: 22px;
             height: 22px;
-            accent-color: #26A69A;
+            accent-color: #3b82f6;
         }
 
         .option span {
@@ -128,7 +231,7 @@
         }
 
         .submit-btn {
-            background: linear-gradient(135deg, #26A69A 0%, #00897B 100%);
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
             color: white;
             border: none;
             padding: 18px 50px;
@@ -138,13 +241,13 @@
             display: block;
             margin: 40px auto 0;
             transition: all 0.3s;
-            box-shadow: 0 6px 20px rgba(0, 137, 123, 0.4);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
             font-weight: bold;
         }
 
         .submit-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 137, 123, 0.6);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.6);
         }
 
         .submit-btn:active {
@@ -279,22 +382,57 @@
             max-width: 600px;
             height: 400px;
             margin: 0 auto 30px;
-            border-radius: 20px;
-            overflow: hidden;
-            background: linear-gradient(135deg, #ffe4f0 0%, #ffd9eb 100%);
-            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+            padding: 30px;
+            background: linear-gradient(135deg, #fff0f5 0%, #ffe4f0 50%, #ffd9eb 100%);
+            border-radius: 25px;
+            box-shadow: 
+                0 10px 30px rgba(255, 105, 180, 0.3),
+                inset 0 2px 10px rgba(255, 192, 203, 0.5);
+            border: 3px solid #ffb3d9;
         }
+
+        /* Decorative carnation frame */
+        .carnation-frame {
+            position: absolute;
+            font-size: 35px;
+            z-index: 5;
+            animation: gentleFloat 3s ease-in-out infinite;
+            filter: drop-shadow(2px 2px 4px rgba(255, 105, 180, 0.4));
+        }
+
+        @keyframes gentleFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-8px) rotate(5deg);
+            }
+        }
+
+        /* Corner carnations */
+        .carnation-top-left { top: -15px; left: -15px; animation-delay: 0s; }
+        .carnation-top-right { top: -15px; right: -15px; animation-delay: 0.5s; }
+        .carnation-bottom-left { bottom: -15px; left: -15px; animation-delay: 1s; }
+        .carnation-bottom-right { bottom: -15px; right: -15px; animation-delay: 1.5s; }
+
+        /* Side carnations */
+        .carnation-top-center { top: -20px; left: 50%; transform: translateX(-50%); animation-delay: 0.25s; }
+        .carnation-bottom-center { bottom: -20px; left: 50%; transform: translateX(-50%); animation-delay: 1.25s; }
+        .carnation-left-center { left: -20px; top: 50%; transform: translateY(-50%); animation-delay: 0.75s; }
+        .carnation-right-center { right: -20px; top: 50%; transform: translateY(-50%); animation-delay: 1.75s; }
 
         .section-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
+            border-radius: 15px;
             transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .section-image:hover {
-            transform: scale(1.05);
+            transform: scale(1.02);
         }
 
         .section-message {
@@ -306,11 +444,209 @@
             text-shadow: 1px 1px 2px rgba(255, 105, 180, 0.2);
         }
 
-        .final-section {
+        /* ==================== ENVELOPE STYLES ==================== */
+        .envelope-section {
             text-align: center;
-            padding: 80px 30px;
+            padding: 80px 30px 150px;
             background: linear-gradient(135deg, #fff0f7 0%, #ffe4f0 100%);
+            min-height: 100vh;
         }
+
+        .envelope-wrapper {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding-top: 50px;
+        }
+
+        .envelope-container {
+            position: relative;
+            width: 400px;
+            height: 280px;
+            margin: 0 auto 100px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .envelope-container:hover:not(.open) {
+            transform: scale(1.05);
+        }
+
+        .envelope {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+        }
+
+        .envelope-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(255, 20, 147, 0.5);
+            z-index: 1;
+        }
+
+        .envelope-flap {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 200px solid transparent;
+            border-right: 200px solid transparent;
+            border-top: 140px solid #ff85c0;
+            top: 0;
+            left: 0;
+            transform-origin: top center;
+            transition: transform 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 3;
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.2));
+        }
+
+        .envelope-container.open .envelope-flap {
+            transform: rotateX(180deg);
+        }
+
+        .envelope-front {
+            position: absolute;
+            width: 100%;
+            height: 50%;
+            bottom: 0;
+            background: linear-gradient(135deg, #ff85c0 0%, #ff69b4 100%);
+            border-radius: 0 0 15px 15px;
+            z-index: 2;
+            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.3);
+        }
+
+        .envelope-heart-seal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3em;
+            z-index: 4;
+            animation: heartBeat 1.5s ease-in-out infinite;
+            filter: drop-shadow(0 3px 6px rgba(255, 20, 147, 0.4));
+        }
+
+        @keyframes heartBeat {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        .envelope-label {
+            position: absolute;
+            bottom: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
+            color: white;
+            padding: 18px 45px;
+            border-radius: 40px;
+            font-size: 1.5em;
+            font-weight: bold;
+            box-shadow: 0 8px 25px rgba(255, 20, 147, 0.5);
+            white-space: nowrap;
+            animation: labelPulse 2s ease-in-out infinite;
+            z-index: 5;
+        }
+
+        @keyframes labelPulse {
+            0%, 100% { 
+                transform: translateX(-50%) scale(1); 
+                box-shadow: 0 8px 25px rgba(255, 20, 147, 0.5);
+            }
+            50% { 
+                transform: translateX(-50%) scale(1.08); 
+                box-shadow: 0 10px 35px rgba(255, 20, 147, 0.7);
+            }
+        }
+
+        .envelope-container.open .envelope-label {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Letter inside envelope */
+        .letter {
+            position: absolute;
+            width: 700px;
+            max-width: 90vw;
+            min-height: 800px;
+            background: linear-gradient(to bottom, #ffffff 0%, #fff9fc 100%);
+            border-radius: 15px;
+            top: 30%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 50px 60px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            z-index: 0;
+            opacity: 0;
+            transition: all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border: 3px solid #ffb3d9;
+        }
+
+        .envelope-container.open .letter {
+            top: -650px;
+            opacity: 1;
+            z-index: 20;
+        }
+
+        .letter-content {
+            text-align: left;
+            color: #c71585;
+            font-size: 1.2em;
+            line-height: 2;
+        }
+
+        .letter-content p {
+            margin-bottom: 25px;
+            text-align: justify;
+        }
+
+        .letter-title {
+            text-align: center;
+            color: #ff1493;
+            font-size: 2.5em;
+            margin-bottom: 25px;
+            font-weight: bold;
+            text-decoration: underline;
+            text-decoration-color: #ff69b4;
+            text-decoration-thickness: 3px;
+        }
+
+        .letter-signature {
+            text-align: right;
+            margin-top: 40px;
+            font-style: italic;
+            font-size: 1.4em;
+            color: #ff1493;
+            font-weight: bold;
+        }
+
+        .heart-decoration {
+            text-align: center;
+            font-size: 2.5em;
+            margin: 30px 0;
+            animation: decorationFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes decorationFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .letter-border-decoration {
+            position: absolute;
+            font-size: 30px;
+            opacity: 0.6;
+        }
+
+        .letter-flower-tl { top: 10px; left: 10px; }
+        .letter-flower-tr { top: 10px; right: 10px; }
+        .letter-flower-bl { bottom: 10px; left: 10px; }
+        .letter-flower-br { bottom: 10px; right: 10px; }
 
         /* Responsive Design */
         @media (max-width: 768px) {
@@ -336,6 +672,11 @@
 
             .section-image-container {
                 height: 300px;
+                padding: 20px;
+            }
+
+            .carnation-frame {
+                font-size: 28px;
             }
 
             .section-message {
@@ -349,6 +690,62 @@
             .submit-btn {
                 font-size: 1.1em;
                 padding: 15px 35px;
+            }
+
+            .carnation-large {
+                font-size: 70px;
+            }
+
+            .carnation-message {
+                font-size: 2em;
+            }
+
+            .carnation-animation-wrapper {
+                max-width: 400px;
+                height: 400px;
+            }
+
+            .carnation-decoration-circle {
+                width: 350px;
+                height: 350px;
+            }
+
+            .envelope-container {
+                width: 320px;
+                height: 220px;
+            }
+
+            .envelope-flap {
+                border-left: 160px solid transparent;
+                border-right: 160px solid transparent;
+                border-top: 110px solid #ff85c0;
+            }
+
+            .letter {
+                width: 90vw;
+                min-height: 700px;
+                padding: 40px 30px;
+            }
+
+            .envelope-container.open .letter {
+                top: -550px;
+            }
+
+            .letter-content {
+                font-size: 1.05em;
+            }
+
+            .letter-title {
+                font-size: 2em;
+            }
+
+            .envelope-label {
+                font-size: 1.3em;
+                padding: 15px 35px;
+            }
+
+            .letter-border-decoration {
+                font-size: 25px;
             }
         }
 
@@ -367,11 +764,93 @@
 
             .section-image-container {
                 height: 250px;
+                padding: 15px;
+            }
+
+            .carnation-frame {
+                font-size: 22px;
+            }
+
+            .carnation-large {
+                font-size: 50px;
+            }
+
+            .carnation-message {
+                font-size: 1.6em;
+            }
+
+            .envelope-container {
+                width: 280px;
+                height: 190px;
+            }
+
+            .envelope-flap {
+                border-left: 140px solid transparent;
+                border-right: 140px solid transparent;
+                border-top: 95px solid #ff85c0;
+            }
+
+            .envelope-label {
+                font-size: 1.1em;
+                padding: 12px 28px;
+                bottom: -70px;
+            }
+
+            .letter {
+                min-height: 600px;
+                padding: 30px 20px;
+            }
+
+            .envelope-container.open .letter {
+                top: -480px;
+            }
+
+            .letter-content {
+                font-size: 0.95em;
+                line-height: 1.8;
+            }
+
+            .letter-content p {
+                margin-bottom: 20px;
+            }
+
+            .letter-title {
+                font-size: 1.7em;
+            }
+
+            .letter-signature {
+                font-size: 1.2em;
+            }
+
+            .heart-decoration {
+                font-size: 2em;
+                margin: 20px 0;
+            }
+
+            .letter-border-decoration {
+                font-size: 20px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- ==================== CARNATION ANIMATION OVERLAY ==================== -->
+    <div class="carnation-animation-overlay" id="carnationOverlay">
+        <div class="carnation-animation-wrapper">
+            <div class="carnation-decoration-circle"></div>
+            <div class="carnation-large">🌸</div>
+            <div class="carnation-large">🌸</div>
+            <div class="carnation-large">🌸</div>
+            <div class="carnation-large">🌸</div>
+            <div class="carnation-large">🌸</div>
+            <div class="carnation-large">🌸</div>
+            <div class="carnation-large">🌸</div>
+            <div class="carnation-large">🌸</div>
+            <div class="carnation-large">🌸</div>
+        </div>
+        <div class="carnation-message">Thank you, my love! 💕</div>
+    </div>
+
     <!-- ==================== SURVEY PAGE ==================== -->
     <div class="survey-container" id="surveyContainer">
         <div class="survey-box">
@@ -612,7 +1091,7 @@
         <!-- Header -->
         <div class="header">
             <h1 class="main-title">💕 Happy Valentine's Day, Babi 💕</h1>
-            <p class="subtitle"> I hope you appreciate this </p>
+            <p class="subtitle">I hope you appreciate this</p>
         </div>
 
         <!-- Content Sections -->
@@ -621,6 +1100,16 @@
             <div class="section" style="animation-delay: 0.1s">
                 <div class="section-number">1</div>
                 <div class="section-image-container">
+                    <!-- Carnation decorations around frame -->
+                    <div class="carnation-frame carnation-top-left">🌸</div>
+                    <div class="carnation-frame carnation-top-center">🌸</div>
+                    <div class="carnation-frame carnation-top-right">🌸</div>
+                    <div class="carnation-frame carnation-left-center">🌸</div>
+                    <div class="carnation-frame carnation-right-center">🌸</div>
+                    <div class="carnation-frame carnation-bottom-left">🌸</div>
+                    <div class="carnation-frame carnation-bottom-center">🌸</div>
+                    <div class="carnation-frame carnation-bottom-right">🌸</div>
+                    
                     <img class="section-image" src="picture/picture1.jpg" alt="Memory 1">
                 </div>
                 <div class="section-message">
@@ -632,6 +1121,15 @@
             <div class="section" style="animation-delay: 0.2s">
                 <div class="section-number">2</div>
                 <div class="section-image-container">
+                    <div class="carnation-frame carnation-top-left">🌸</div>
+                    <div class="carnation-frame carnation-top-center">🌸</div>
+                    <div class="carnation-frame carnation-top-right">🌸</div>
+                    <div class="carnation-frame carnation-left-center">🌸</div>
+                    <div class="carnation-frame carnation-right-center">🌸</div>
+                    <div class="carnation-frame carnation-bottom-left">🌸</div>
+                    <div class="carnation-frame carnation-bottom-center">🌸</div>
+                    <div class="carnation-frame carnation-bottom-right">🌸</div>
+                    
                     <img class="section-image" src="picture/picture2.jpg" alt="Memory 2">
                 </div>
                 <div class="section-message">
@@ -643,6 +1141,15 @@
             <div class="section" style="animation-delay: 0.3s">
                 <div class="section-number">3</div>
                 <div class="section-image-container">
+                    <div class="carnation-frame carnation-top-left">🌸</div>
+                    <div class="carnation-frame carnation-top-center">🌸</div>
+                    <div class="carnation-frame carnation-top-right">🌸</div>
+                    <div class="carnation-frame carnation-left-center">🌸</div>
+                    <div class="carnation-frame carnation-right-center">🌸</div>
+                    <div class="carnation-frame carnation-bottom-left">🌸</div>
+                    <div class="carnation-frame carnation-bottom-center">🌸</div>
+                    <div class="carnation-frame carnation-bottom-right">🌸</div>
+                    
                     <img class="section-image" src="picture/picture3.jpg" alt="Memory 3">
                 </div>
                 <div class="section-message">
@@ -654,6 +1161,15 @@
             <div class="section" style="animation-delay: 0.4s">
                 <div class="section-number">4</div>
                 <div class="section-image-container">
+                    <div class="carnation-frame carnation-top-left">🌸</div>
+                    <div class="carnation-frame carnation-top-center">🌸</div>
+                    <div class="carnation-frame carnation-top-right">🌸</div>
+                    <div class="carnation-frame carnation-left-center">🌸</div>
+                    <div class="carnation-frame carnation-right-center">🌸</div>
+                    <div class="carnation-frame carnation-bottom-left">🌸</div>
+                    <div class="carnation-frame carnation-bottom-center">🌸</div>
+                    <div class="carnation-frame carnation-bottom-right">🌸</div>
+                    
                     <img class="section-image" src="picture/picture4.jpg" alt="Memory 4">
                 </div>
                 <div class="section-message">
@@ -665,6 +1181,15 @@
             <div class="section" style="animation-delay: 0.5s">
                 <div class="section-number">5</div>
                 <div class="section-image-container">
+                    <div class="carnation-frame carnation-top-left">🌸</div>
+                    <div class="carnation-frame carnation-top-center">🌸</div>
+                    <div class="carnation-frame carnation-top-right">🌸</div>
+                    <div class="carnation-frame carnation-left-center">🌸</div>
+                    <div class="carnation-frame carnation-right-center">🌸</div>
+                    <div class="carnation-frame carnation-bottom-left">🌸</div>
+                    <div class="carnation-frame carnation-bottom-center">🌸</div>
+                    <div class="carnation-frame carnation-bottom-right">🌸</div>
+                    
                     <img class="section-image" src="picture/picture5.jpg" alt="Memory 5">
                 </div>
                 <div class="section-message">
@@ -672,12 +1197,54 @@
                 </div>
             </div>
 
-            <!-- Final Section -->
-            <div class="section final-section">
-                <h2 style="font-size: 3em; margin-bottom: 30px;">💝 Forever Yours 💝</h2>
-                <div class="section-message">
-                    Happy Valentine's Day, Babi! 🌹<br>
-                    You mean the world to me! 💕
+            <!-- Envelope Section -->
+            <div class="section envelope-section">
+                <h2 style="font-size: 3em; margin-bottom: 30px; color: #ff1493;">💌 A Special Message For You 💌</h2>
+                
+                <div class="envelope-wrapper">
+                    <div class="envelope-container" id="envelopeContainer">
+                        <div class="envelope">
+                            <div class="envelope-back"></div>
+                            <div class="envelope-flap"></div>
+                            <div class="envelope-front"></div>
+                            <div class="envelope-heart-seal">💝</div>
+                            
+                            <div class="letter">
+                                <!-- Letter border decorations -->
+                                <div class="letter-border-decoration letter-flower-tl">🌸</div>
+                                <div class="letter-border-decoration letter-flower-tr">🌸</div>
+                                <div class="letter-border-decoration letter-flower-bl">🌸</div>
+                                <div class="letter-border-decoration letter-flower-br">🌸</div>
+                                
+                                <div class="letter-content">
+                                    <div class="letter-title">My Dearest Babi 💕</div>
+                                    <div class="heart-decoration">💖 🌹 💖</div>
+                                    
+                                    <p>Words cannot fully express how much you mean to me. You are the light of my life, my best friend, and my greatest love. Every moment I spend with you feels like a beautiful dream that I never want to wake up from.</p>
+                                    
+                                    <p>Every day with you is a precious gift. Your smile brightens my darkest days, your laughter is the sweetest music to my ears, and your love fills my heart with endless joy and warmth. You have this incredible ability to make everything better just by being you.</p>
+                                    
+                                    <p>Thank you for being the amazing person you are - for your kindness that knows no bounds, your patience that never wavers, your understanding that comforts me, and your beautiful soul that makes the world a better place. You inspire me to be better every single day.</p>
+                                    
+                                    <p>I cherish every memory we've created together - every laugh, every conversation, every adventure, and even every challenge we've overcome side by side. These moments are treasures I hold close to my heart, and I look forward to creating countless more with you.</p>
+                                    
+                                    <div class="heart-decoration">🌸 💝 🌸</div>
+                                    
+                                    <p>I promise to always cherish you, support you in all your dreams, stand by your side through thick and thin, and love you with every fiber of my being. You deserve all the happiness in the world, and I'll spend every day trying to give it to you.</p>
+                                    
+                                    <p><strong>Happy Valentine's Day, my love! You are my everything, my forever, my always.</strong></p>
+                                    
+                                    <div class="letter-signature">
+                                        Forever and always yours,<br>
+                                        With all my love ❤️<br>
+                                        XOXO
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="envelope-label">💌 Click to Open! 💌</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -688,21 +1255,30 @@
         document.getElementById('surveyForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
+            const carnationOverlay = document.getElementById('carnationOverlay');
             const surveyContainer = document.getElementById('surveyContainer');
             const valentinesContainer = document.getElementById('valentinesContainer');
             
-            // Change body background to pink
-            document.body.classList.add('pink-theme');
+            // Show carnation animation
+            carnationOverlay.classList.add('active');
             
-            // Hide survey with animation
-            surveyContainer.classList.add('hidden');
-            
-            // Show Valentine's page after delay
+            // After 3 seconds, hide carnation animation and show Valentine's page
             setTimeout(() => {
-                valentinesContainer.classList.add('active');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                createFloatingHearts();
-            }, 500);
+                carnationOverlay.classList.remove('active');
+                
+                // Change body background to pink
+                document.body.classList.add('pink-theme');
+                
+                // Hide survey with animation
+                surveyContainer.classList.add('hidden');
+                
+                // Show Valentine's page
+                setTimeout(() => {
+                    valentinesContainer.classList.add('active');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    createFloatingHearts();
+                }, 500);
+            }, 3000);
         });
 
         // ==================== SURVEY OPTION SELECTION ====================
@@ -721,10 +1297,15 @@
                     });
                     
                     // Highlight selected
-                    this.style.background = '#E0F2F1';
-                    this.style.borderColor = '#26A69A';
+                    this.style.background = '#dbeafe';
+                    this.style.borderColor = '#3b82f6';
                 });
             });
+        });
+
+        // ==================== ENVELOPE INTERACTION ====================
+        document.getElementById('envelopeContainer').addEventListener('click', function() {
+            this.classList.toggle('open');
         });
 
         // ==================== VALENTINE'S PAGE FUNCTIONS ====================
@@ -732,7 +1313,7 @@
         // Create floating hearts
         function createFloatingHearts() {
             const container = document.getElementById('heartsBackground');
-            const hearts = ['💕', '💖', '💗', '💓', '💝', '❤️', '🌹'];
+            const hearts = ['💕', '💖', '💗', '💓', '💝', '❤️', '🌹', '🌸'];
             
             setInterval(() => {
                 const heart = document.createElement('div');
@@ -751,6 +1332,3 @@
     </script>
 </body>
 </html>
-
-
-
